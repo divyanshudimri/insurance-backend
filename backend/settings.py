@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-a$dk0j4ico@)jme)p_gmj^t5p)rk0f_a(akdpd0)*g*b!fj!^s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+DOCS_ON = True
+
 ALLOWED_HOSTS = []
 
 
@@ -38,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'drf_yasg',
     'insurance',
     'users',
 ]
@@ -124,3 +128,25 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter'
+    ],
+    'TEST_REQUEST_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
+    ],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
+
+BASE_API_PREFIX = 'api/v1/'
