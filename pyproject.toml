@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "insurance-backend"
+version = "0.1.0"
+description = ""
+authors = ["Divyanshu Dimri"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0"
+djangorestframework = "^3.14.0"
+django-filter = "^23.5"
+drf-yasg = "^1.21.7"
+psycopg2 = "^2.9.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
