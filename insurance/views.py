@@ -21,5 +21,5 @@ class PolicyViewSet(ListModelMixin, GenericViewSet):
 
     @action(detail=True)
     def history(self, request, pk=None):
-        history = PolicyHistory.objects.filter(policy_id=pk)
+        history = PolicyHistory.objects.filter(policy_id=pk).order_by('created_at')
         return Response(PolicyHistorySerializer(history, many=True).data)

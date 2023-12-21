@@ -1,7 +1,6 @@
-from datetime import timedelta
+from datetime import date
 
 from django.urls import reverse
-from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -13,12 +12,12 @@ class UserTestCase(APITestCase):
         self.customer_1 = User.objects.create(
             first_name='Divyanshu', last_name='Dimri',
             username='dimri@div',
-            date_of_birth=(timezone.now() - timedelta(days=28 * 365)).date()
+            date_of_birth=date(1995, 12, 27)
         )
         self.customer_2 = User.objects.create(
             first_name='Sudhanshu', last_name='Dimri',
             username='sud@dimri',
-            date_of_birth=(timezone.now() - timedelta(days=40 * 365)).date()
+            date_of_birth=date(1994, 8, 1)
         )
         self.list_url = reverse('v1:customer-list')
 
