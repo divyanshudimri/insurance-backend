@@ -149,3 +149,32 @@ class PolicyTestCase(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         policy = res.json()['results'][0]
         self.assertEqual(policy['id'], self.policy_2.id)
+
+    def test_policy_history(self):
+        policy = Policy.objects.create(
+            customer=self.customer_1,
+            type=PolicyTypes.PERSONAL_ACCIDENT.value,
+            premium=100,
+            cover=10000000,
+            state=PolicyStates.NEW.value
+        )
+
+        url = reverse('v1:quote-detail', kwargs={'pk': policy.pk})
+
+        payload = {
+            'state': PolicyStates.QUOTED.value
+        }
+        _ = self.client.put(url, data=payload)
+
+        payload = {
+            'state': PolicyStates.ACTIVE.value
+        }
+        _ = self.client.put(url, data=payload)
+
+        history_url = reverse('v1:policies-history', kwargs={'pk': policy.pk})
+        res = self.client.get(history_url)
+        data = res.json()
+
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]['new_state'], PolicyStates.QUOTED.value)
+        self.assertEqual(data[1]['new_state'], PolicyStates.ACTIVE.value)
