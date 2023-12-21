@@ -54,9 +54,9 @@ The project uses environment variables for configuration. Edit the `.env` file a
 
 ### Testing
 
-Go into backend container and run:
+- Go into backend container shell and run:
 
-    ```bash
+   ```bash
     python manage.py test
     ```
 
