@@ -32,20 +32,46 @@ Follow these instructions to get the project up and running on your local machin
 
 1. Clone the repository:
 
-    ```bash
+    ```
     git clone git@github.com:divyanshudimri/insurance-backend.git
     ```
 
 2. Navigate to the project directory:
 
-    ```bash
+    ```
     cd insurance-backend
     ```
 
 3. Build and start the Docker containers:
 
-    ```bash
+    ```
     docker-compose up -d
+    ```
+
+### Local developement
+
+Here is the way to install pre-commit hooks and poetry
+
+1. Install poetry
+    - Mac os, prerequisites `brew`
+    ```
+    brew install poetry
+    ```
+    - Ubuntu
+    ```
+    curl -sSL https://install.python-poetry.org
+    POETRY_HOME=/usr/local/bin/poetry python3 -
+    poetry config virtualenvs.create false
+    ```
+
+2. Activate virtual environment
+    ```
+    source $(poetry env info -p)/bin/activate
+    ```
+
+3. Install pre-commit hooks
+    ```
+    pre-commit install
     ```
 
 ### Configuration
@@ -56,7 +82,7 @@ The project uses environment variables for configuration. Edit the `.env` file a
 
 - Go into backend container shell and run:
 
-   ```bash
+   ```
     python manage.py test
     ```
 
