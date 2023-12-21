@@ -74,6 +74,8 @@ Here is the way to install pre-commit hooks and poetry
     pre-commit install
     ```
 
+Now when you do `git add .` and `git commit -m "<commit-message>"`, pre-commit hooks run automatically.
+
 ### Configuration
 
 The project uses environment variables for configuration. Edit the `.env` file and provide the necessary values, such as database connection details and API keys.
