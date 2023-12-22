@@ -3,7 +3,6 @@ FROM python:3.12-alpine
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
-ARG GH_TOKEN
 ENV PYTHONUNBUFFERED 1
 
 # Install system dependencies
