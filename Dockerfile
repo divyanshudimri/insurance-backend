@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED 1
 # Install system dependencies
 RUN apk update && \
     apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev linux-headers python3-dev && \
-    apk add bash coreutils curl postgresql-client postgresql-libs openssh openssh-client git
+    apk add bash coreutils curl postgresql-client postgresql-libs
 
 RUN mkdir -p /code/
 
